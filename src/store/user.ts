@@ -1,11 +1,17 @@
-import { ref } from "vue"
+import { readonly, reactive } from "vue"
 
 export const createUserStore = () => {
-  const loggedIn = ref(false)
-  const profile = ref({})
+  const state = reactive({
+    loggedIn: false,
+    profile: {}
+  })
+
+  const login = () => {
+    state.loggedIn = true
+  }
 
   return {
-    loggedIn,
-    profile
+    state: readonly(state),
+    login
   }
 }
